@@ -32,8 +32,10 @@ def upload_to_s3(file_path, s3_url, access_key, secret_key, bucket_name, region)
         aws_secret_access_key=secret_key,
         region_name=region
     )
-    
-    client = session.client('s3', endpoint_url=s3_url)
+    from botocore.config import Config
+
+config = Config(s3={'addressing_style': 'path'}, signature_version='s3v4')
+client = session.client('s3', endpoint_url=s3_url, config=config)
 
     try:
         # Upload the file to the specified S3 bucket
