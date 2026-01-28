@@ -16,6 +16,23 @@
 
 
 
+# Copyright (c) 2025 Stephen G. Pope
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+
 import os
 import boto3
 import logging
@@ -31,11 +48,11 @@ def upload_to_s3(file_path, s3_url, access_key, secret_key, bucket_name, region)
         aws_access_key_id=access_key,
         aws_secret_access_key=secret_key,
         region_name=region
-    )
+        )
     from botocore.config import Config
 
-config = Config(s3={'addressing_style': 'path'}, signature_version='s3v4')
-client = session.client('s3', endpoint_url=s3_url, config=config)
+    config = Config(s3={'addressing_style': 'path'}, signature_version='s3v4')
+    client = session.client('s3', endpoint_url=s3_url, config=config)
 
     try:
         # Upload the file to the specified S3 bucket
